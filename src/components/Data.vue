@@ -1,7 +1,6 @@
 <template>
   <v-container>
     <h1>Data</h1>
-
     <v-row no-gutters>
       <v-col v-for="n in 3" :key="n" cols="12" sm="6" md="4">
         <v-card
@@ -12,6 +11,11 @@
           v-bind:key="dato.key"
         >
           {{ dato.title }}
+          <v-btn color="yellow" depressed small v-on:click='deleteDato(dato.id)'>
+            <v-icon >
+              {{ icons.mdiDelete }}
+            </v-icon>
+          </v-btn>
         </v-card>
       </v-col>
     </v-row>
@@ -19,13 +23,19 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
+import { mdiDelete } from '@mdi/js';
 export default {
-  name: "Data",
+  name: 'Data',
+  data: () => ({
+      icons: {
+        mdiDelete,
+      },
+    }),
   methods: {
-    ...mapActions(["fetchDatos"]),
+    ...mapActions(['fetchDatos', 'deleteDato']),
   },
-  computed: mapGetters(["allDatos"]),
+  computed: mapGetters(['allDatos']),
   created() {
     this.fetchDatos();
   },
