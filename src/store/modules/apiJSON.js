@@ -12,7 +12,7 @@ export default {
   actions: {
     async fetchDatos({ commit }) {
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/posts/"
+        "https://jsonplaceholder.typicode.com/posts"
       );
       commit("setDatos", response.data);
     },
@@ -20,7 +20,13 @@ export default {
       await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
   
       commit('removeDato', id);
-    }
+    },
+    async addDato({commit}, title){
+      const response = await axios.post(`https://jsonplaceholder.typicode.com/posts`,
+      {title:title})
+
+      commit('addDato', response.data)
+  }
   },
   mutations: {
     setDatos(state, datos) {
@@ -28,6 +34,9 @@ export default {
     },
     removeDato(state, id) {
       state.datos = state.datos.filter((dato) => dato.id !== id)
+    },
+    addDato(state, newDato) {
+      state.datos.unshift(newDato)
     }
   },
 };
