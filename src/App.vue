@@ -1,24 +1,25 @@
 <template>
   <v-app>
     <AppBar />
-    
-
     <v-main>
-      <ButtonData />
+      <AgregarData />
+      <Data />
     </v-main>
   </v-app>
 </template>
 
 <script>
 import AppBar from "./components/AppBar";
-import ButtonData from "./components/ButtonData";
+import AgregarData from "./components/AgregarData";
+import Data from "./components/Data";
 
 export default {
   name: "App",
 
   components: {
     AppBar,
-    ButtonData,
+    AgregarData,
+    Data,
   },
 
   data: () => ({
