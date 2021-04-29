@@ -26,7 +26,12 @@ export default {
       {title:title})
 
       commit('addDato', response.data)
-  }
+    },
+    async updatedDato({commit}, updatedDato) {
+      const response = await axios.put(`https://jsonplaceholder.typicode.com/posts/${updatedDato.id}`, updatedDato);
+
+    commit('updatedDato', response.data);
+    }
   },
   mutations: {
     setDatos(state, datos) {
@@ -37,6 +42,14 @@ export default {
     },
     addDato(state, newDato) {
       state.datos.unshift(newDato)
-    }
+    },
+    updatedDato: (state, updatedDato) => {
+      const index = state.datos.findIndex(dato => dato.id === updatedDato.id);
+  
+      if (index !== -1) {
+        state.datos.splice(index, 1, updatedDato);
+      } 
+      
+  }
   },
 };

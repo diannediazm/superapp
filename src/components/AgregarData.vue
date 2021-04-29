@@ -4,9 +4,10 @@
     <v-row>
       <v-col cols="12" sm="6">
         <v-form ref="form" @submit="onSubmit">
-          <v-text-field v-model="title" label="Name" required></v-text-field>
+          <v-text-field v-model="title" label="Escribe un dato" required></v-text-field>
           <v-btn
-            color="success"
+            color="purple lighten-4"
+            depressed
             class="mr-4"
             type="submit"
             value="Submit"
